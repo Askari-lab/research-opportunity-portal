@@ -1,3 +1,7 @@
+## GitHub Repository
+
+Repository: https://github.com/Askari-lab/research-opportunity-portal
+
 # Research Opportunity Portal
 **Student:** Hassan Askari  
 **Course:** CN  
