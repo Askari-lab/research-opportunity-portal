@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research Opportunity Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">UNIVERSITY RESEARCH</p>
+    <h1>Research Opportunity Portal</h1>
+    <p>Find research openings and manage opportunities in one place.</p>
+  </div>
+</header>
+<main class="wrap">
+  <div id="message" class="message" role="status" aria-live="polite"></div>
+  <section class="panel">
+    <div class="section-heading">
+      <div><p class="eyebrow">OPPORTUNITY MANAGEMENT</p><h2 id="formTitle">Create an opportunity</h2></div>
+    </div>
+    <form id="opportunityForm">
+      <div class="form-grid">
+        <label>Research title <input name="title" maxlength="200" required></label>
+        <label>Research area <input name="research_area" required></label>
+        <label>Faculty member's name <input name="faculty_name" required></label>
+        <label>Department <input name="department" required></label>
+        <label>Required skills <input name="required_skills" placeholder="Python, AI, statistics" required></label>
+        <label>Available positions <input name="available_positions" type="number" min="1" step="1" required></label>
+        <label>Application deadline <input name="application_deadline" type="date" required></label>
+        <label>Status <select name="status"><option>Open</option><option>Closed</option></select></label>
+        <label class="wide">Research description <textarea name="description" rows="4" required></textarea></label>
+      </div>
+      <div class="actions">
+        <button type="submit" id="saveButton">Save opportunity</button>
+        <button type="button" class="secondary" id="cancelEdit" hidden>Cancel edit</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <div><p class="eyebrow">DATABASE RECORDS</p><h2>Research opportunities</h2></div>
+      <button id="refreshButton" class="secondary" type="button">Refresh list</button>
+    </div>
+    <div id="opportunityList" class="cards"><p class="muted">Loading opportunities…</p></div>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">SELECTED RECORD</p>
+    <h2>Opportunity details</h2>
+    <div id="details" class="details muted">Choose “View details” on a record.</div>
+  </section>
+  <footer>University Research Opportunity Portal · Student assignment project</footer>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

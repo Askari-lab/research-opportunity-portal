@@ -1,0 +1,261 @@
+{
+  "info": {
+    "name": "Hassan Askari - Research Opportunity Portal",
+    "description": "CRUD and validation tests for the Flask Research Opportunity Portal API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:5000"
+    },
+    {
+      "key": "opportunityId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "1 - Create opportunity A",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"AI-Based Medical Diagnosis\",\n  \"description\": \"Explore machine learning methods for medical diagnosis.\",\n  \"research_area\": \"Artificial Intelligence\",\n  \"faculty_name\": \"Dr. Ahmed\",\n  \"department\": \"Computer Science\",\n  \"required_skills\": \"Python, Machine Learning\",\n  \"available_positions\": 3,\n  \"application_deadline\": \"2026-12-15\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": "{{baseUrl}}/api/opportunities"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Created (201)', function () { pm.response.to.have.status(201); });",
+              "if (pm.response.code === 201) { pm.collectionVariables.set('opportunityId', pm.response.json().id); }"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2 - Create opportunity B",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Climate Data Analysis\",\n  \"description\": \"Analyze local climate data trends.\",\n  \"research_area\": \"Data Science\",\n  \"faculty_name\": \"Dr. Sara\",\n  \"department\": \"Artificial Intelligence\",\n  \"required_skills\": \"Python, Statistics\",\n  \"available_positions\": 2,\n  \"application_deadline\": \"2026-12-20\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": "{{baseUrl}}/api/opportunities"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Created (201)', function () { pm.response.to.have.status(201); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3 - Create opportunity C",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Robotics Navigation Research\",\n  \"description\": \"Study navigation algorithms for small robots.\",\n  \"research_area\": \"Robotics\",\n  \"faculty_name\": \"Dr. Bilal\",\n  \"department\": \"Computer Science\",\n  \"required_skills\": \"C++, Robotics\",\n  \"available_positions\": 1,\n  \"application_deadline\": \"2027-01-10\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": "{{baseUrl}}/api/opportunities"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Created (201)', function () { pm.response.to.have.status(201); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4 - Retrieve all opportunities",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/opportunities"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('OK (200)', function () { pm.response.to.have.status(200); });",
+              "pm.test('At least three records exist', function () { pm.expect(pm.response.json().length).to.be.at.least(3); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "5 - Retrieve one (created ID)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/opportunities/{{opportunityId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('OK (200)', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "6 - Update opportunity",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"AI-Based Medical Diagnosis - Updated\",\n  \"description\": \"Updated research on machine learning for medical diagnosis.\",\n  \"research_area\": \"Artificial Intelligence\",\n  \"faculty_name\": \"Dr. Ahmed\",\n  \"department\": \"Computer Science\",\n  \"required_skills\": \"Python, ML, Data Analysis\",\n  \"available_positions\": 4,\n  \"application_deadline\": \"2026-12-18\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": "{{baseUrl}}/api/opportunities/{{opportunityId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Updated (200)', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "7 - Close opportunity",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"AI-Based Medical Diagnosis - Updated\",\n  \"description\": \"Updated research on machine learning for medical diagnosis.\",\n  \"research_area\": \"Artificial Intelligence\",\n  \"faculty_name\": \"Dr. Ahmed\",\n  \"department\": \"Computer Science\",\n  \"required_skills\": \"Python, ML, Data Analysis\",\n  \"available_positions\": 4,\n  \"application_deadline\": \"2026-12-18\",\n  \"status\": \"Closed\"\n}"
+        },
+        "url": "{{baseUrl}}/api/opportunities/{{opportunityId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Closed (200)', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "8 - Invalid data (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Missing required fields\"}"
+        },
+        "url": "{{baseUrl}}/api/opportunities"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Validation error (400)', function () { pm.response.to.have.status(400); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "9 - Delete opportunity",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/opportunities/{{opportunityId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Deleted (200)', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "10 - Deleted opportunity returns 404",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/opportunities/{{opportunityId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Not found (404)', function () { pm.response.to.have.status(404); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
